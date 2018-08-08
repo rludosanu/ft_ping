@@ -30,16 +30,16 @@ void					send_packet(void)
 
 	sin.sin_family = AF_INET;
 	sin.sin_addr.s_addr = g_env.dst->sin_addr.s_addr;
-	ft_memset(&(sin.sin_zero), 0, sizeof(sin.sin_zero));
+	memset(&(sin.sin_zero), 0, sizeof(sin.sin_zero));
 
 	payload_size = sizeof(struct timeval);
 	packet_size = sizeof(struct icmp) + payload_size;
 	if (!(packet = (char *)malloc(packet_size)))
 		return ;
 
-	ft_memset(packet, 0, packet_size);
+	memset(packet, 0, packet_size);
 	gettimeofday(&tv_out, NULL);
-	ft_memcpy(packet + sizeof(struct icmp), &tv_out, sizeof(struct timeval));
+	memcpy(packet + sizeof(struct icmp), &tv_out, sizeof(struct timeval));
 
 	icmp = (struct icmp *)packet;
 	icmp->icmp_type = 8;

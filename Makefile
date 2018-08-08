@@ -19,12 +19,6 @@ CFLAGS		= 	-Wall -Wextra -Werror
 SRC			= 	main\
 				checksum\
 				infousage\
-				ft_memcpy\
-				ft_memset\
-				ft_isnumber\
-				ft_strequ\
-				ft_atoi\
-				ft_strcmp\
 				timevaldiff\
 				setenviron\
 				send_packet\

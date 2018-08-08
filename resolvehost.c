@@ -12,14 +12,14 @@
 
 #include "ft_ping.h"
 
-extern s_env			g_env;
+extern s_env g_env;
 
-int 					resolvehost(void)
+int resolvehost(void)
 {
-	struct addrinfo		*res;
-	struct addrinfo		hints;
-	int					ret;
-	struct in_addr		addr;
+	struct addrinfo *res;
+	struct addrinfo hints;
+	int ret;
+	struct in_addr addr;
 
 	if (g_env.tgt == NULL)
 		return (-1);
@@ -39,7 +39,7 @@ int 					resolvehost(void)
 	{
 		if ((g_env.dst = (struct sockaddr_in *)malloc(sizeof(struct sockaddr_in))))
 		{
-			ft_memcpy(g_env.dst, res->ai_addr, sizeof(struct sockaddr_in));
+			memcpy(g_env.dst, res->ai_addr, sizeof(struct sockaddr_in));
 			addr = (g_env.dst)->sin_addr;
 			inet_ntop(AF_INET, &(addr.s_addr), (char *)&(g_env.sdst), INET_ADDRSTRLEN + 1);
 			ret = 0;

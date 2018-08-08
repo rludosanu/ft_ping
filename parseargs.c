@@ -14,7 +14,17 @@
 
 extern s_env	g_env;
 
-int				parseargs(int argc, char **argv)
+static int	strisnumber(const char *str)
+{
+	if (!str || !strlen(str))
+		return (0);
+	while (*str != '\0')
+		if (!isdigit(*str++))
+			return (0);
+	return (1);
+}
+
+int		parseargs(int argc, char **argv)
 {
 	int			i;
 	char		*p;
@@ -25,19 +35,19 @@ int				parseargs(int argc, char **argv)
 	while (i < argc)
 	{
 		p = argv[i];
-		if (ft_strequ(p, "-i"))
+		if (!strcmp(p, "-i"))
 		{
 			if (g_env.opt_flood == 1)
 				return (infousage(ERR_COMPAT));
-			else if (!ft_isnumber(argv[i + 1]) || ft_atoi(argv[i + 1]) < 0)
+			else if (!strisnumber(argv[i + 1]) || atoi(argv[i + 1]) < 0)
 				return (infousage(ERR_INVARG));
 			else
-				g_env.opt_delay = ft_atoi(argv[i++ + 1]);
+				g_env.opt_delay = atoi(argv[i++ + 1]);
 		}
-		else if (ft_strequ(p, "-t"))
+		else if (!strcmp(p, "-t"))
 		{
-			if (ft_isnumber(argv[i + 1]) && ft_atoi(argv[i + 1]) > 0)
-				g_env.opt_ttl = ft_atoi(argv[i++ + 1]);
+			if (strisnumber(argv[i + 1]) && atoi(argv[i + 1]) > 0)
+				g_env.opt_ttl = atoi(argv[i++ + 1]);
 			else
 				return (infousage(ERR_INVARG));
 		}
@@ -66,7 +76,7 @@ int				parseargs(int argc, char **argv)
 		}
 		else
 		{
-			if (ft_isnumber(argv[i]))
+			if (strisnumber(argv[i]))
 				return (infousage(ERR_INVARG));
 			if (g_env.opt_delay == -1)
 				g_env.opt_delay = 1;

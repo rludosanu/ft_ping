@@ -21,7 +21,7 @@ void			setenviron(void)
 	g_env.seq = 1;
 	g_env.tgt = NULL;
 	g_env.dst = NULL;
-	ft_memset(&(g_env.sdst), 0, INET_ADDRSTRLEN + 1);
+	memset(&(g_env.sdst), 0, INET_ADDRSTRLEN + 1);
 	g_env.n_transmitted = 0;
 	g_env.n_received = 0;
 	g_env.n_errors = 0;

@@ -5,7 +5,7 @@ Send ICMP ECHO_REQUEST packets to network hosts
 ## Synopsis
 
 ```
-./ft_ping
+sudo ./ft_ping
 	[-hvqf]
 	[-i interval]
 	[-t ttl]

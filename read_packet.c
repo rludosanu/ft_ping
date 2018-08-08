@@ -31,8 +31,8 @@ void					read_packet(void)
 	double				tv_delta;
 	int 				n;
 
-	ft_memset(&iov, 0, sizeof(iov));
-	ft_memset(&msg, 0, sizeof(msg));
+	memset(&iov, 0, sizeof(iov));
+	memset(&msg, 0, sizeof(msg));
 
 	msg.msg_name = NULL;
 	msg.msg_namelen = 0;
